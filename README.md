@@ -259,7 +259,7 @@ with customers as (
         first_name,
         last_name
 
-    from dbt_jaffle_shop.raw_customers
+    from dbt_jaffle_shop.customers
 
 ),
 
@@ -271,7 +271,7 @@ orders as (
         order_date,
         status
 
-    from dbt_jaffle_shop.raw_orders
+    from dbt_jaffle_shop.orders
 
 ),
 
