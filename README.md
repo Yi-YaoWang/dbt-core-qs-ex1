@@ -187,7 +187,7 @@ C:> dbt debug
   - copy seeds data
   ```
   C:> copy ..\db\seeds\*.csv seeds
-  C:> dbt seeds
+  C:> dbt seed
   ```
 
 - Verfiy result in database client
@@ -407,6 +407,18 @@ from dbt_jaffle_shop.customers
 ***models/stg_orders.sql***
 
 ```SQL
+select
+    id as order_id,
+    user_id as customer_id,
+    order_date,
+    status
+
+from dbt_jaffle_shop.orders
+```
+  
+***models/customer_orders.sql***
+
+```SQL
 with customers as (
 
     select * from {{ ref('stg_customers') }}
@@ -470,7 +482,7 @@ To add tests to your project:
 version: 2
 
 models:
-  - name: customers
+  - name: customer_orders
     columns:
       - name: customer_id
         tests:
@@ -516,7 +528,7 @@ Adding documentation to your project allows you to describe your models in rich 
 version: 2
 
 models:
-  - name: customers
+  - name: customer_orders
     description: One record per customer
     columns:
       - name: customer_id
